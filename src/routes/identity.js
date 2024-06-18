@@ -1,9 +1,7 @@
 const express = require("express");
-const { health } = require("../controllers/identityController");
+const { createOrUpdateIdentity } = require("../controllers/identityController");
 const router = express.Router();
 
-// router.post("/identify", createOrUpdateIdentity);
-router.get("/health", health);
-
+router.post("/identify", createOrUpdateIdentity);
 
 module.exports = router;
