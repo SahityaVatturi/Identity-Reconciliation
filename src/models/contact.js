@@ -2,11 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ContactSchema = new Schema({
-  id: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
   phoneNumber: {
     type: String,
     required: true,
@@ -20,7 +15,7 @@ const ContactSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
     validate: {
       validator: function (v) {
         return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(v); // Validates email format
@@ -28,13 +23,13 @@ const ContactSchema = new Schema({
       message: (props) => `${props.value} is not a valid email!`,
     },
   },
-  linkedIn: {
+  linkedId: {
     type: String,
-    required: true,
+    required: false,
   },
   linkPrecedence: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 
