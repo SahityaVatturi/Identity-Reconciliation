@@ -1,37 +1,43 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ContactSchema = new Schema({
-  phoneNumber: {
-    type: String,
-    required: true,
-    validate: {
-      validator: function (v) {
-        return /\d{10}/.test(v); // Validates phoneNumber format
+const ContactSchema = new Schema(
+  {
+    phoneNumber: {
+      type: String,
+      required: true,
+      validate: {
+        validator: function (v) {
+          return /\d{10}/.test(v); // Validates phoneNumber format
+        },
+        message: (props) => `${props.value} is not a valid 10-digit phone number!`,
       },
-      message: (props) => `${props.value} is not a valid 10-digit phone number!`,
     },
-  },
-  email: {
-    type: String,
-    required: true,
-    // unique: true,
-    validate: {
-      validator: function (v) {
-        return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(v); // Validates email format
+    email: {
+      type: String,
+      required: true,
+      // unique: true,
+      validate: {
+        validator: function (v) {
+          return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(v); // Validates email format
+        },
+        message: (props) => `${props.value} is not a valid email!`,
       },
-      message: (props) => `${props.value} is not a valid email!`,
     },
+    linkedId: {
+      type: String,
+      required: false,
+    },
+    linkPrecedence: {
+      type: String,
+      required: false,
+    },
+    deletedAt: { type: Date, default: null },
   },
-  linkedId: {
-    type: String,
-    required: false,
-  },
-  linkPrecedence: {
-    type: String,
-    required: false,
-  },
-});
+  {
+    timestamps: true, // Automatically adds `createdAt` and `updatedAt` fields
+  }
+);
 
 const Contact = mongoose.model("contacts", ContactSchema);
 
