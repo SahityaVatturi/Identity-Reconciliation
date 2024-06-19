@@ -2,14 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "./app.js",
+      "src": "src/api/index.js",
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
+
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": "6060",
+    "MONGODB_KEY": "mongodb+srv://monica:SV6maQTZmP8pMftp@booking1.5vnlgco.mongodb.net/identity_reconciliation?retryWrites=true&w=majority"
+  }
 }

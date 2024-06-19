@@ -2,3 +2,8 @@
 **/.DS_Store 
 /**/package-lock.json
 /**/node_modules
+.vercel
+deno.lock
+dist/
+.netlify
+app.local.js
